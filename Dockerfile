@@ -1,4 +1,4 @@
-FROM fhsinchy/php-nginx-base:php8.1.3-fpm-nginx1.20.2-alpine3.15
+FROM gfmarshall/laravel-base:0.1-dev
 
 # set composer related environment variables
 ENV PATH="/composer/vendor/bin:$PATH" \
@@ -30,6 +30,9 @@ ENV APP_NAME="Question Board" \
 COPY ./docker/docker-php-* /usr/local/bin/
 RUN dos2unix /usr/local/bin/docker-php-entrypoint
 RUN dos2unix /usr/local/bin/docker-php-entrypoint-dev
+RUN echo "***" && echo pwd: `pwd` && ls -l /usr/local/bin
+RUN chmod +x  /usr/local/bin/docker-php-entrypoint*
+RUN echo "***" && echo pwd: `pwd` && ls -l /usr/local/bin
 
 # copy nginx configuration
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
